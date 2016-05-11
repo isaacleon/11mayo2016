@@ -1,0 +1,86 @@
+deso <- read.csv("C:\\Users\\SALA-C22\\Documents\\enoe.csv")
+require(forecast)
+require(fpp)
+des <- ts(deso[,2],start=2005, frequency=4)
+mod1<- ses(des, alpha=0.2, initial="simple",h=4)
+mod2<- ses(des, alpha=0.6, initial="simple",h=4)
+mod3<- ses(des, alpha=1, initial="simple",h=4)
+plot(mod1,plot.conf=FALSE, ylab="desocupa",xlab="Años",main="grafica",fcol="deepskyblue2",type="o")
+#ajustes del modelo
+lines(fitted(mod1),col="deepskyblue4",type="o")
+lines(fitted(mod2),col="deepskyblue3",type="o")
+lines(fitted(mod3),col="deepskyblue",type="o")
+#media de c/u de los modelos
+lines(mod1$mean,col="deepskyblue4",type="o")
+lines(mod2$mean,col="deepskyblue3",type="o")
+lines(mod3$mean,col="deepskyblue",type="o")
+legend("topleft",lty=1,col = c(1,"deepskyblue4","deepskyblue3","deepskyblue"),c("data",expression(alpha==0.2),expression(alpha==0.6),expression(alpha==1),pch=10)
+aju1<-mod1$fitted
+aju2<-mod2$fitted
+aju3<-mod3$fitted
+resmod1<-(des-aju1)
+resmod2<-(des-aju2)
+resmod3<-(des-aju3)
+mod123<-data.frame(des,aju1,aju2,aju3,resmod1,resmod2,resmod3)
+View(mod123)
+res1<-(resmod1-mod1$residuals)
+res2<-(resmod2-mod2$residuals)
+res3<-(resmod3-mod3$residuals)
+res1
+res2
+res3
+##########ejercicio
+ocu <- ts(deso[,1],start=2005, frequency=4)
+modd1<- ses(ocu, alpha=0.1, initial="simple",h=4)
+modd2<- ses(ocu, alpha=0.6, initial="simple",h=4)
+modd3<- ses(ocu, alpha=0.9, initial="simple",h=4)
+plot(modd1,plot.conf=FALSE, ylab="ocupa",xlab="Años",main="grafica",fcol="deepskyblue2",type="o")
+lines(fitted(modd1),col="deepskyblue4",type="o")
+lines(fitted(modd2),col="deepskyblue3",type="o")
+lines(fitted(modd3),col="deepskyblue",type="o")
+lines(mod1$mean,col="deepskyblue4",type="o")
+lines(mod2$mean,col="deepskyblue3",type="o")
+lines(mod3$mean,col="deepskyblue",type="o")
+legend("topright",lty=1,col = c(1,"deepskyblue4","deepskyblue3","deepskyblue"),c("data",expression(alpha==0.1),expression(alpha==0.6),expression(alpha==0.9),pch=10)
+ajuu1<-modd1$fitted
+ajuu2<-modd2$fitted
+ajuu3<-modd3$fitted
+resmodd1<-(des-ajuu1)
+resmodd2<-(des-ajuu2)
+resmodd3<-(des-ajuu3)
+modd123<-data.frame(ocu,ajuu1,ajuu2,ajuu3,resmodd1,resmodd2,resmodd3)
+View(modd123)
+ress1<-(resmodd1-modd1$residuals)
+ress2<-(resmodd2-modd2$residuals)
+ress3<-(resmodd3-modd3$residuals)
+ress1
+ress2
+ress3
+#
+pre <- ts(deso[,4],start=2005, frequency=4)
+moddd1<- ses(pre, alpha=0.0001, initial="simple",h=4)
+moddd2<- ses(pre, alpha=0.5, initial="simple",h=4)
+moddd3<- ses(pre, alpha=0.987, initial="simple",h=4)
+plot(moddd1,plot.conf=FALSE, ylab="pres",xlab="Años",main="grafica",fcol="deepskyblue2",type="o")
+lines(fitted(moddd1),col="deepskyblue4",type="o")
+lines(fitted(moddd2),col="deepskyblue3",type="o")
+lines(fitted(moddd3),col="deepskyblue",type="o")
+lines(moddd1$mean,col="deepskyblue4",type="o")
+lines(moddd2$mean,col="deepskyblue3",type="o")
+lines(moddd3$mean,col="deepskyblue",type="o")
+legend("topleft",lty=1,col = c(1,"deepskyblue4","deepskyblue3","deepskyblue"),c("data",expression(alpha==0.0001),expression(alpha==0.5),expression(alpha==0.987),pch=10)
+ajuuu1<-moddd1$fitted
+ajuuu2<-moddd2$fitted
+ajuuu3<-moddd3$fitted
+resmoddd1<-(des-ajuuu1)
+resmoddd2<-(des-ajuuu2)
+resmoddd3<-(des-ajuuu3)
+moddd123<-data.frame(pre,ajuuu1,ajuuu2,ajuuu3,resmoddd1,resmoddd2,resmoddd3)
+View(moddd123)
+resss1<-(resmoddd1-moddd1$residuals)
+resss2<-(resmoddd2-moddd2$residuals)
+resss3<-(resmoddd3-moddd3$residuals)
+resss1
+resss2
+resss3
+       
