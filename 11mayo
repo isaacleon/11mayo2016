@@ -56,6 +56,12 @@ ress3<-(resmodd3-modd3$residuals)
 ress1
 ress2
 ress3
+x<-accuracy(modd1)
+y<-accuracy(modd2)
+z<-accuracy(modd3)
+x
+y
+z
 #
 pre <- ts(deso[,4],start=2005, frequency=4)
 moddd1<- ses(pre, alpha=0.0001, initial="simple",h=4)
@@ -83,4 +89,9 @@ resss3<-(resmoddd3-moddd3$residuals)
 resss1
 resss2
 resss3
-       
+x1<-accuracy(moddd1)
+y1<-accuracy(moddd2)
+z1<-accuracy(moddd3)
+x1
+y1
+z1      
